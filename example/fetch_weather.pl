@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $Id: fetch_weather.pl,v 1.1.2.1 2003/02/02 00:39:52 minima Exp $
+# $Id: fetch_weather.pl,v 1.1.2.2 2003/02/03 01:42:40 minima Exp $
 
 # this has been taken from Geo::METAR and modified
 #
@@ -25,6 +25,7 @@
 #
 
 # Get the site code.
+my ($debug, $raw);
 my @sort;
 while ($ARGV[0] =~ /^-/ && @ARGV > 1) {
 	my @f = split //, shift @ARGV;
@@ -33,6 +34,8 @@ while ($ARGV[0] =~ /^-/ && @ARGV > 1) {
 		push @sort, 'taf' if $f eq 't' && ! grep $_ eq 'taf', @sort; 
 		push @sort, 'staf' if $f eq 's' && ! grep $_ eq 'staf', @sort; 
 		push @sort, 'metar' if $f eq 'm' && ! grep $_ eq 'metar', @sort; 
+		$debug++ if $f eq 'x';
+		$raw++ if $f eq 'r';
 	}
 }
 push @sort, 'metar' unless @sort;
@@ -81,6 +84,8 @@ foreach $sort (@sort) {
 		} else {
 			$m->metar($metar);
 		}
+		print $m->raw, "\n" if $raw;
+		print join "\n", $m->as_chunk_strings, "\n" if $debug;
 		print $m->as_string, "\n";
 		
 	} else {
