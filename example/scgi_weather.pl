@@ -264,19 +264,19 @@ sub error
 sub tafHEAD
 {
 	my @in = @{$_[0]};
-	return "FORECAST Issued $in[3] on " . Geo::TAF::EN::_dayend($in[2]);
+	return "FORECAST Issued $in[3] on " . Geo::TAF::EN::day($in[2]);
 }
 
 sub metarHEAD
 {
 	my @in = @{$_[0]};
-	return "CURRENT Issued $in[3] on " . Geo::TAF::EN::_dayend($in[2]);
+	return "CURRENT Issued $in[3] on " . Geo::TAF::EN::day($in[2]);
 }
 
 sub VALID
 {
 	my @in = @{$_[0]};
-	return "Valid $in[1]-\>$in[2] on " . Geo::TAF::EN::_dayend($in[0]);
+	return "Valid $in[1]-\>$in[2] on " . Geo::TAF::EN::day($in[0]);
 }
 
 sub WIND

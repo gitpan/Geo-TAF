@@ -13,3 +13,6 @@ Revision history for Perl extension Geo::TAF.
 	- added dayend function in Geo::TAF::EN
 	- detail changes to example/scgi_weather.pl
 	- added some tests
+
+1.04  Mon Feb  3 17:40:00 2003
+	- fix typo in scgi_weather.pl
